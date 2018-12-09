@@ -37,15 +37,12 @@ namespace dataflow
                 Console.WriteLine($"done - {sw.ElapsedMilliseconds}");
             });
 
-
             consumer_2.Completion.ContinueWith(p =>
             {
                 sw.Stop();
                 Console.WriteLine($"done - {sw.ElapsedMilliseconds}");
             });
 
-
-            Console.ReadKey();
         }
 
         static TransformBlock<int, int> producer()
@@ -60,7 +57,7 @@ namespace dataflow
             return block;
         }
 
-        static ActionBlock<int> consumer(string name)
+        static  ActionBlock<int> consumer(string name)
         {
             var block = new ActionBlock<int>(
                 (timeout) =>

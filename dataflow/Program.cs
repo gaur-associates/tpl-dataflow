@@ -10,7 +10,10 @@ namespace dataflow
     {
         static void Main(string[] args)
         {
-           ProducerConsumer.start();
+           //ProducerConsumer.start();
+           new BatchExample().start();
+
+           Console.ReadKey();
         }
     }
 }
