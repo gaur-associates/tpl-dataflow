@@ -10,10 +10,12 @@ namespace dataflow
     {
         static void Main(string[] args)
         {
-           //ProducerConsumer.start();
-           new BatchExample().start();
+            Console.WriteLine("hello tpl");
+            //ProducerConsumer.start();
+            // new BatchExample().start();
+            new JoinBlockExample().start();
 
-           Console.ReadKey();
+            Console.Read();
         }
     }
 }
