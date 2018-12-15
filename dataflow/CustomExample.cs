@@ -8,10 +8,28 @@ namespace dataflow
 {
     internal class CustomExample
     {
-       public static BufferBlock<int> SumOddNumbers()
+        public static IPropagatorBlock<int, int> SumOddNumbers()
         {
-            var block = new BufferBlock<int>();
-            return block;
+            var output = new BufferBlock<int>();
+            int sum = 0;
+
+            var target = new ActionBlock<int>(async (input) =>
+           {
+               if (input % 2 != 0)
+               {
+                   sum += input;
+
+                   await output.SendAsync(sum);
+               }
+           });
+
+            target.Completion.ContinueWith(p =>
+            {
+                output.Complete();
+            });
+
+            return DataflowBlock.Encapsulate<int, int>(target, output);
+
         }
 
         public void start()
