@@ -9,6 +9,7 @@ namespace dataflow
 {
     internal class CancelExample
     {
+        static CancellationTokenSource cancel = new CancellationTokenSource();
         public void start()
         {
             var consoleTask = Task.Run(() =>
@@ -20,6 +21,7 @@ namespace dataflow
                      if (input == 'c')
                      {
                          Console.WriteLine("Cancel request");
+                         cancel.Cancel();
                      }
                      else if (input == 'o')
                      {
@@ -53,6 +55,9 @@ namespace dataflow
             {
                 Console.WriteLine($" {name} faulted - {p.Exception.Flatten().InnerExceptions.Aggregate("", (s, exception) => s + " " + exception.Message)}");
             }
+            else if (p.IsCanceled){
+                Console.WriteLine($"{name} - canceled");
+            }
             else
             {
                 Console.WriteLine($" {name} done");
@@ -72,6 +77,8 @@ namespace dataflow
                 {
                     Console.WriteLine($"in action block {name} - {input}");
                     Thread.Sleep(1000);
+                } , new ExecutionDataflowBlockOptions{
+                    CancellationToken = cancel.Token
                 });
 
             return block;
