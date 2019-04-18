@@ -11,7 +11,8 @@ namespace dataflow
         static void Main(string[] args)
         {
             Console.WriteLine("hello tpl");
-            new SchedulerExample().start();
+            new MaxMessageExample().start();
+            //new SchedulerExample().start();
             //SingleProducerExample.start();
             //ProducerConsumer.start();
             //new TransformManyExample().start();
