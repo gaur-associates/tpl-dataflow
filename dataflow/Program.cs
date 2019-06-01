@@ -11,7 +11,7 @@ namespace dataflow
         static void Main(string[] args)
         {
             Console.WriteLine("hello tpl");
-            new MaxMessageExample().start();
+            //new MaxMessageExample().start();
             //new SchedulerExample().start();
             //SingleProducerExample.start();
             //ProducerConsumer.start();
@@ -21,7 +21,7 @@ namespace dataflow
             // new JoinBlockExample().start();
             // new LinkToExample().start();
             // new CancelExample().start();
-            //new CustomExample().start();
+            new CustomExample().start();
             Console.Read();
         }
     }
