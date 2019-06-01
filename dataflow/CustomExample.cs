@@ -42,7 +42,7 @@ namespace dataflow
                 return input * 3;
             });
 
-            var producerBlock = SumOddNumbers();
+            var producerBlock = new CustomAdvance();
 
             transformBlock.LinkTo(producerBlock, new DataflowLinkOptions() { PropagateCompletion = true });
 
@@ -62,7 +62,7 @@ namespace dataflow
 
             consumerBlock.Completion.ContinueWith(p => print_status(p, "consumer"));
 
-            Console.ReadKey();
+            Console.Read();
         }
         private static ActionBlock<int> Consumer(string name)
         {
